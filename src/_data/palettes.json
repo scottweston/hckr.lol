@@ -1,0 +1,105 @@
+[
+  {
+    "id": "neighbourhood-signal",
+    "name": "Neighbourhood Signal",
+    "mode": "light",
+    "description": "Risograph flyer in daylight",
+    "colors": {
+      "ink": "#17152b",
+      "paper": "#f5f0df",
+      "signal": "#c8ff3d",
+      "coral": "#ff6b57",
+      "violet": "#7565ff",
+      "sky": "#84dfff",
+      "muted": "#5f5b70",
+      "shadow": "#17152b",
+      "onViolet": "#17152b"
+    }
+  },
+  {
+    "id": "view-source-blue",
+    "name": "View Source Blue",
+    "mode": "light",
+    "description": "Browser chrome and blue links",
+    "colors": {
+      "ink": "#111827",
+      "paper": "#f7f7ee",
+      "signal": "#ffdc3d",
+      "coral": "#ff4f64",
+      "violet": "#2864dc",
+      "sky": "#74d9ef",
+      "muted": "#555d6d",
+      "shadow": "#111827",
+      "onViolet": "#ffffff"
+    }
+  },
+  {
+    "id": "hypercard-picnic",
+    "name": "HyperCard Picnic",
+    "mode": "light",
+    "description": "Sunny stacks and clickable cards",
+    "colors": {
+      "ink": "#2a1738",
+      "paper": "#fff8d9",
+      "signal": "#ffe04a",
+      "coral": "#ff5b91",
+      "violet": "#36c8b5",
+      "sky": "#94ddff",
+      "muted": "#66566e",
+      "shadow": "#2a1738",
+      "onViolet": "#172b29"
+    }
+  },
+  {
+    "id": "midnight-modem",
+    "name": "Midnight Modem",
+    "mode": "dark",
+    "systemDark": true,
+    "description": "A late dial-up connection",
+    "colors": {
+      "ink": "#f8f1dd",
+      "paper": "#242039",
+      "signal": "#d8ff68",
+      "coral": "#ff806b",
+      "violet": "#7969e8",
+      "sky": "#72d8f4",
+      "muted": "#c7c0d2",
+      "shadow": "#0d0b17",
+      "onViolet": "#ffffff"
+    }
+  },
+  {
+    "id": "crt-afterglow",
+    "name": "CRT Afterglow",
+    "mode": "dark",
+    "description": "Green phosphor after midnight",
+    "colors": {
+      "ink": "#d9ffe0",
+      "paper": "#08130d",
+      "signal": "#53ff88",
+      "coral": "#ffb454",
+      "violet": "#155f3c",
+      "sky": "#44dba0",
+      "muted": "#9ccaaa",
+      "shadow": "#020805",
+      "onViolet": "#f1fff2"
+    }
+  },
+  {
+    "id": "geocities-night-bus",
+    "name": "GeoCities Night Bus",
+    "mode": "dark",
+    "description": "Neon GIFs on the last service",
+    "colors": {
+      "ink": "#fff6cf",
+      "paper": "#17102f",
+      "signal": "#fff14a",
+      "coral": "#ff5fa2",
+      "violet": "#704fff",
+      "sky": "#3ce3dc",
+      "muted": "#d1c5ed",
+      "shadow": "#080415",
+      "onViolet": "#ffffff"
+    }
+  }
+]

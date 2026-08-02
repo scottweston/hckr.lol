@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+---
+<article class="page-shell h-entry">
+  <header class="page-heading page-heading--resource">
+    <p class="eyebrow">Resource / {{ category }}</p>
+    <h1 class="p-name">{{ title }}</h1>
+    <p class="lede p-summary">{{ description }}</p>
+  </header>
+  <div class="resource-grid">
+    <nav class="contents-card" aria-label="Resource details">
+      <p><strong>Filed under</strong><br>{{ category }}</p>
+      <p><strong>Level</strong><br>{{ level or "Beginner" }}</p>
+      <p><strong>Last tended</strong><br><time datetime="{{ updated }}">{{ updated }}</time></p>
+      <a href="/resources/">← Resource index</a>
+    </nav>
+    <div class="prose e-content">
+      {{ content | safe }}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,18 @@
+---
+layout: layouts/page.njk
+title: Pocket handbook
+eyebrow: Resources / tended over time
+description: A small, practical index of ideas and tools for making a home on the open web.
+permalink: /resources/
+---
+<ul class="resource-list">
+  {% for resource in collections.resources %}
+    <li>
+      <a href="{{ resource.url }}">
+        <p class="kicker">{{ resource.data.category }} · {{ resource.data.level or "Beginner" }}</p>
+        <h2>{{ resource.data.title }}</h2>
+        <p>{{ resource.data.description }}</p>
+      </a>
+    </li>
+  {% endfor %}
+</ul>

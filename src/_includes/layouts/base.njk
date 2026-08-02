@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ site.language }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} · {% endif %}hckr.lol</title>
+    <meta name="description" content="{{ description or site.description }}">
+    <meta name="theme-color" content="{{ palettes[0].colors.paper }}">
+    <meta name="generator" content="Eleventy">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="{{ page.url | absoluteUrl(site.url) }}">
+    <link rel="alternate" type="application/rss+xml" title="hckr.lol blog" href="/feed.xml">
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const palettes = {{ palettes | json | safe }};
+        const legacy = { signal: "neighbourhood-signal", paper: "view-source-blue", dusk: "midnight-modem" };
+        const systemTheme = () => matchMedia("(prefers-color-scheme: dark)").matches
+          ? palettes.find((palette) => palette.systemDark).id
+          : palettes[0].id;
+        let selected;
+        try {
+          const saved = localStorage.getItem("hckr-theme");
+          selected = legacy[saved] || saved;
+          if (!palettes.some((palette) => palette.id === selected)) selected = null;
+          if (saved && selected !== saved) localStorage.setItem("hckr-theme", selected);
+        } catch {}
+        const palette = palettes.find((item) => item.id === (selected || systemTheme()));
+        root.classList.replace("no-js", "js");
+        root.dataset.theme = palette.id;
+        document.querySelector('meta[name="theme-color"]').content = palette.colors.paper;
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script src="/assets/js/site.js" defer></script>
+  </head>
+  <body>
+    {% include "components/header.njk" %}
+    <main id="main" tabindex="-1">
+      {{ content | safe }}
+    </main>
+    {% include "components/footer.njk" %}
+  </body>
+</html>

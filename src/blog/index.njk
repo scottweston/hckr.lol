@@ -1,0 +1,18 @@
+---
+layout: layouts/page.njk
+title: Field notes
+eyebrow: Blog / reverse chronological
+description: Dispatches about making, owning and tending a small place on the web.
+permalink: /blog/
+---
+<ol class="post-list">
+  {% for post in collections.posts %}
+    <li>
+      <a href="{{ post.url }}">
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        <h3>{{ post.data.title }}</h3>
+        <span class="post-list__arrow" aria-hidden="true">↗</span>
+      </a>
+    </li>
+  {% endfor %}
+</ol>

@@ -1,0 +1,75 @@
+---
+layout: layouts/base.njk
+title: A small web clubhouse
+description: Notes, resources and a neighbourly webring for people making homes on the open web.
+---
+<section class="hero h-card">
+  <div class="hero__copy">
+    <p class="eyebrow">Broadcasting from our own little corner</p>
+    <h1 class="p-name">Make the web <span>yours.</span></h1>
+    <p class="hero__lede p-note">hckr.lol is a living example of an independent website: hand-tended with Eleventy, published as plain files, and ready to move anywhere.</p>
+    <div class="hero__actions">
+      <a class="button button--signal" href="/resources/getting-started/">Start your own site →</a>
+      <a class="button" href="/colophon/">How this one works</a>
+    </div>
+  </div>
+  <aside class="hero__panel" aria-label="Next meetup">
+    <p class="hero__panel-label">Next transmission / meetup 01</p>
+    <div>
+      <time datetime="2026-08-26T18:30:00+10:00">26<br>Aug</time>
+      <p>6:30–8:30 pm · Ballarat<br>Ballarat Hackerspace</p>
+    </div>
+    <p class="broadcast"><a href="/events/">Details</a> · <a href="https://thq.fyi/se/9ON8a9Q">Tickets →</a></p>
+  </aside>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <p>OWN YOUR URL ✦ WRITE SOMETHING WEIRD ✦ VIEW SOURCE ✦ JOIN THE RING ✦ SMALL WEB, BIG FEELINGS ✦&nbsp; OWN YOUR URL ✦ WRITE SOMETHING WEIRD ✦ VIEW SOURCE ✦ JOIN THE RING ✦ SMALL WEB, BIG FEELINGS ✦&nbsp;</p>
+</div>
+
+<section class="section-shell" aria-labelledby="explore-heading">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Three doors, no algorithm</p>
+      <h2 id="explore-heading">Wander around</h2>
+    </div>
+  </div>
+  <div class="explore-grid">
+    <a class="explore-card" href="/blog/">
+      <span>01 / Field notes</span>
+      <h3>Things we are learning in public</h3>
+      <p>Short essays about owning URLs, tending sites and making software legible.</p>
+    </a>
+    <a class="explore-card" href="/resources/">
+      <span>02 / The handbook</span>
+      <h3>A pocket guide to the IndieWeb</h3>
+      <p>Small, linked explanations of the standards and practices behind independent sites.</p>
+    </a>
+    <a class="explore-card" href="/webring/">
+      <span>03 / Neighbours</span>
+      <h3>Take a lap around the webring</h3>
+      <p>No feed-ranking machinery. Just people pointing to the next interesting person.</p>
+    </a>
+  </div>
+</section>
+
+<section class="section-shell" aria-labelledby="latest-heading">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Fresh from the notebook</p>
+      <h2 id="latest-heading">Latest notes</h2>
+    </div>
+    <a href="/blog/">All notes →</a>
+  </div>
+  <ol class="post-list">
+    {% for post in collections.posts | head(3) %}
+      <li>
+        <a href="{{ post.url }}">
+          <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+          <h3>{{ post.data.title }}</h3>
+          <span class="post-list__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
+</section>

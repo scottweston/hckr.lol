@@ -1,0 +1,37 @@
+---
+layout: layouts/page.njk
+title: Neighbourhood webring
+eyebrow: Member list / reshuffled each build
+description: A hand-made path through sites belonging to meetup neighbours and open-web friends.
+permalink: /webring/
+---
+<div class="ring-howto">
+  <div>
+    <p class="kicker">Link to your next neighbour</p>
+    <code>{{ site.url }}/webring/&lt;your-slug&gt;/next/</code>
+  </div>
+  <div>
+    <p class="kicker">Link to your previous neighbour</p>
+    <code>{{ site.url }}/webring/&lt;your-slug&gt;/previous/</code>
+  </div>
+</div>
+
+<ol class="ring-list">
+  {% for member in webring.members %}
+    <li>
+      <div>
+        <h2><a href="{{ member.url }}">{{ member.title }}</a></h2>
+        <p>{{ member.description }}</p>
+        <p class="slug">slug: <strong>{{ member.slug }}</strong></p>
+      </div>
+      <div class="ring-list__links">
+        <a class="button" href="/webring/{{ member.slug }}/previous/" aria-label="Previous site from {{ member.title }}">← prev</a>
+        <a class="button button--signal" href="/webring/{{ member.slug }}/next/" aria-label="Next site from {{ member.title }}">next →</a>
+      </div>
+    </li>
+  {% endfor %}
+</ol>
+
+{% note "Build-time shuffle" %}
+The member data is shuffled once during each Eleventy build. Every <code>next</code> and <code>previous</code> page in that deployment uses the same order, including wrap-around at both ends. Updating the site creates a new route around the ring—no function, database or server process required.
+{% endnote %}

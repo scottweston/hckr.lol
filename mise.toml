@@ -1,0 +1,24 @@
+[tools]
+"npm:@11ty/eleventy" = "3.1.6"
+"npm:wrangler" = "latest"
+
+[tasks.build]
+description = "Build the static site into _site"
+run = "eleventy"
+
+[tasks.dev]
+description = "Run Eleventy with its local development server"
+run = "eleventy --serve"
+
+[tasks.clean]
+description = "Remove generated output"
+run = "rm -rf _site"
+
+[tasks.check]
+description = "Build and run the project checks"
+run = "eleventy && node --test"
+
+[tasks.deploy]
+description = "Build, check, and deploy to Cloudflare Pages"
+depends = ["check"]
+run = "wrangler pages deploy _site --project-name hckr-lol"

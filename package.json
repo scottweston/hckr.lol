@@ -1,0 +1,18 @@
+{
+  "name": "hckr-lol",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A portable Eleventy IndieWeb meetup site and teaching project.",
+  "homepage": "https://hckr.lol",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottweston/hckr.lol.git"
+  },
+  "scripts": {
+    "build": "mise run build",
+    "dev": "mise run dev"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,26 @@
+---
+layout: layouts/page.njk
+title: Events
+eyebrow: Meetups / bring a laptop or just yourself
+description: Friendly gatherings for making websites, swapping links and learning how the open web fits together.
+permalink: /events/
+---
+<ol class="event-list">
+  {% for event in events %}
+    <li class="event-card h-event{% if event.status == 'past' %} event-card--past{% endif %}">
+      <time class="event-card__date" datetime="{{ event.date }}">{{ event.displayDate }}</time>
+      <div class="event-card__body">
+        <p class="kicker">{{ event.status }}</p>
+        <h2 class="p-name">{{ event.title }}</h2>
+        <p>
+          <strong><time class="dt-start" datetime="{{ event.start }}">{{ event.startTime }}</time>–<time class="dt-end" datetime="{{ event.end }}">{{ event.endTime }}</time></strong>
+          · <span class="p-location">{{ event.location }}</span>
+        </p>
+        <p class="p-summary">{{ event.description }}</p>
+        {% if event.ticketUrl %}
+          <p><a class="button button--signal u-url" href="{{ event.ticketUrl }}">Get tickets →</a></p>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ol>
