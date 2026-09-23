@@ -13,13 +13,20 @@ description: Notes, resources and a neighbourly webring for people making homes 
       <a class="button" href="/colophon/">How this one works</a>
     </div>
   </div>
+  {% set meetup = events | nextEvent %}
   <aside class="hero__panel" aria-label="Next meetup">
-    <p class="hero__panel-label">Next transmission / meetup 01</p>
+    {% if meetup %}
+    <p class="hero__panel-label">Next transmission / {{ meetup.title }}</p>
     <div>
-      <time datetime="2026-08-26T18:30:00+10:00">26<br>Aug</time>
-      <p>6:30–8:30 pm · Ballarat<br>Ballarat Hackerspace</p>
+      <time datetime="{{ meetup.start }}">{{ meetup.date | eventDay }}<br>{{ meetup.date | eventMonth }}</time>
+      <p>{{ meetup.startTime }}–{{ meetup.endTime }}<br>{{ meetup.location }}</p>
     </div>
-    <p class="broadcast"><a href="/events/">Details</a> · <a href="https://thq.fyi/se/9ON8a9Q">Tickets →</a></p>
+    <p class="broadcast"><a href="/events/">Details</a>{% if meetup.ticketUrl %} · <a href="{{ meetup.ticketUrl }}">Tickets →</a>{% endif %}</p>
+    {% else %}
+    <p class="hero__panel-label">Next transmission</p>
+    <p>More meetups coming soon.</p>
+    <p class="broadcast"><a href="/events/">Past meetups →</a></p>
+    {% endif %}
   </aside>
 </section>
 

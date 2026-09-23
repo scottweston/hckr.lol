@@ -32,6 +32,22 @@ module.exports = function (eleventyConfig) {
     (items || []).slice(0, count)
   );
 
+  eleventyConfig.addFilter("nextEvent", (events) =>
+    events
+      .filter((event) => event.status === "upcoming")
+      .sort((a, b) => new Date(a.start) - new Date(b.start))[0]
+  );
+
+  eleventyConfig.addFilter("eventDay", (date) =>
+    new Intl.DateTimeFormat("en-AU", { day: "numeric", timeZone: "UTC" })
+      .format(new Date(date))
+  );
+
+  eleventyConfig.addFilter("eventMonth", (date) =>
+    new Intl.DateTimeFormat("en-AU", { month: "short", timeZone: "UTC" })
+      .format(new Date(date))
+  );
+
   eleventyConfig.addFilter("absoluteUrl", (url, base) =>
     new URL(url, base).toString()
   );

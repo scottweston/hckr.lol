@@ -82,6 +82,10 @@ permalink: /blog/notes-from-the-meetup/
 
 Resources use `layouts/resource.njk` and add `category`, `level` and `updated`. Events live in `src/_data/events.js`, which demonstrates keeping structured records separate from presentation.
 
+To add a meetup, copy an event record and update its title, dates, times, location, description and ticket URL. Use `status: "upcoming"` for planned events and `status: "past"` for finished ones. Status is maintained manually; it does not change automatically with the date.
+
+The front page shows the earliest start time among events marked `upcoming`, or a coming-soon message when there are none. The events page lists every record in file order. Both pages use the same data, so updating `ticketUrl` updates both links; leave it empty to hide the ticket link until it is ready. Run `mise run check` to rebuild and verify the site, then publish the generated site for the changes to appear live.
+
 ## Change the theme
 
 Six light and dark palette definitions live in `src/_data/palettes.json`. Eleventy uses that single file to generate the CSS custom-property sets and the swatch menu in the site header.

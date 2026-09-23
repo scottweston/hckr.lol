@@ -1,5 +1,18 @@
 module.exports = [
   {
+    title: "Ballarat IndieWeb meetup #2",
+    date: "2026-09-23",
+    displayDate: "Wednesday 23 September 2026",
+    start: "2026-09-23T18:30:00+10:00",
+    end: "2026-09-23T20:30:00+10:00",
+    startTime: "6:30 pm",
+    endTime: "8:30 pm",
+    location: "Ballarat Hackerspace, Ballarat",
+    status: "upcoming",
+    description: "Our second gathering for making personal websites, swapping links and learning how the open web fits together. Bring a laptop or just yourself.",
+    ticketUrl: "https://ballarathackerspace.tidyhq.com/public/schedule/events/89198-indieweb-meetup",
+  },
+  {
     title: "Ballarat IndieWeb meetup #1",
     date: "2026-08-26",
     displayDate: "Wednesday 26 August 2026",
@@ -8,7 +21,7 @@ module.exports = [
     startTime: "6:30 pm",
     endTime: "8:30 pm",
     location: "Ballarat Hackerspace, Ballarat",
-    status: "upcoming",
+    status: "past",
     description: "Our first gathering for making personal websites, swapping links and learning how the open web fits together. Bring a laptop or just yourself.",
     ticketUrl: "https://thq.fyi/se/9ON8a9Q",
   },
