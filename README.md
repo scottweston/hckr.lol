@@ -6,7 +6,7 @@ The deployed site is entirely static. Eleventy turns Markdown, Nunjucks, JavaScr
 
 ## Start here
 
-Install the one pinned tool and start Eleventy:
+Install the configured tools and start Eleventy:
 
 ```sh
 mise install
@@ -18,6 +18,7 @@ Open `http://localhost:8080`. Other useful commands are:
 ```sh
 mise run build   # write the production site to _site/
 mise run check   # build, then verify key output and webring routes
+mise run deploy  # build, check, then upload to Cloudflare Pages
 mise run clean   # remove generated output
 ```
 
@@ -100,6 +101,16 @@ This is a good meetup exercise:
 4. Open the palette menu and share the result.
 
 ## Deploy to Cloudflare Pages
+
+To deploy from your local checkout:
+
+```sh
+mise run deploy
+```
+
+This runs `check` first, then uploads `_site/` to the `hckr-lol` Pages project. If you need to sign in first, run `mise exec -- wrangler login`. Wrangler uses your current Git branch: use `main` for production, or another branch for a preview deployment. See the [Cloudflare direct upload guide](https://developers.cloudflare.com/pages/get-started/direct-upload/).
+
+To set up automatic deployments from Git instead:
 
 Connect the Git repository to Pages and use:
 
