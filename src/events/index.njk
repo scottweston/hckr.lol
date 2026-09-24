@@ -5,21 +5,21 @@ eyebrow: Meetups / bring a laptop or just yourself
 description: Friendly gatherings for making websites, swapping links and learning how the open web fits together.
 permalink: /events/
 ---
+{% set publishedEvents = events | publishedEvents %}
+{% set nextMeetup = events | nextEvent %}
+<p class="event-coming-soon" data-events-coming-soon{% if nextMeetup %} hidden{% endif %}>The next meetup is coming soon. Come back soon to get tickets.</p>
 <ol class="event-list">
-  {% for event in events %}
-    <li class="event-card h-event{% if event.status == 'past' %} event-card--past{% endif %}">
+  {% for event in publishedEvents %}
+    <li class="event-card h-event{% if event | eventPassed %} event-card--past{% endif %}" data-event-card data-event-end="{{ event.end }}">
       <time class="event-card__date" datetime="{{ event.date }}">{{ event.displayDate }}</time>
       <div class="event-card__body">
-        <p class="kicker">{{ event.status }}</p>
         <h2 class="p-name">{{ event.title }}</h2>
         <p>
           <strong><time class="dt-start" datetime="{{ event.start }}">{{ event.startTime }}</time>–<time class="dt-end" datetime="{{ event.end }}">{{ event.endTime }}</time></strong>
           · <span class="p-location">{{ event.location }}</span>
         </p>
         <p class="p-summary">{{ event.description }}</p>
-        {% if event.ticketUrl %}
-          <p><a class="button button--signal u-url" href="{{ event.ticketUrl }}">Get tickets →</a></p>
-        {% endif %}
+        <p data-event-tickets{% if event | eventPassed %} hidden{% endif %}><a class="button button--signal u-url" href="{{ event.ticketUrl }}">Get tickets →</a></p>
       </div>
     </li>
   {% endfor %}

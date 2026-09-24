@@ -72,3 +72,36 @@ if (picker) {
 
   applyTheme(readSavedTheme() || systemTheme());
 }
+
+const eventCards = [...document.querySelectorAll("[data-event-card]")];
+const nextEventPanels = [...document.querySelectorAll("[data-next-event]")];
+
+if (eventCards.length || nextEventPanels.length) {
+  const updateEvents = () => {
+    const now = Date.now();
+
+    for (const card of eventCards) {
+      const passed = Date.parse(card.dataset.eventEnd) <= now;
+      card.classList.toggle("event-card--past", passed);
+      card.querySelector("[data-event-tickets]").hidden = passed;
+    }
+
+    const upcoming = nextEventPanels
+      .filter((panel) => Date.parse(panel.dataset.eventEnd) > now)
+      .sort((a, b) => Date.parse(a.dataset.eventEnd) - Date.parse(b.dataset.eventEnd))[0];
+
+    for (const panel of nextEventPanels) panel.hidden = panel !== upcoming;
+
+    const homeComingSoon = document.querySelector("[data-next-event-soon]");
+    if (homeComingSoon) homeComingSoon.hidden = Boolean(upcoming);
+
+    const eventsComingSoon = document.querySelector("[data-events-coming-soon]");
+    if (eventsComingSoon) {
+      eventsComingSoon.hidden = eventCards.some((card) => Date.parse(card.dataset.eventEnd) > now);
+    }
+  };
+
+  updateEvents();
+  window.addEventListener("pageshow", updateEvents);
+  window.setInterval(updateEvents, 60_000);
+}

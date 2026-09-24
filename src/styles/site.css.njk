@@ -293,6 +293,8 @@ eleventyExcludeFromCollections: true
     background: var(--violet);
     color: var(--on-violet);
   }
+  .hero__panel-content { display: flex; flex: 1; flex-direction: column; justify-content: space-between; gap: 3rem; }
+  .hero__panel-content[hidden], .event-coming-soon[hidden], [data-event-tickets][hidden] { display: none; }
   .hero__panel-label, .eyebrow, .kicker {
     font-family: var(--font-mono);
     font-size: .78rem;
@@ -426,6 +428,7 @@ eleventyExcludeFromCollections: true
   .ring-list__links { display: flex; gap: .65rem; }
 
   .event-list { display: grid; gap: 1.25rem; }
+  .event-coming-soon { margin-bottom: 2rem; font-size: 1.2rem; }
   .event-card { display: grid; grid-template-columns: 9rem 1fr; border: 3px solid var(--ink); background: var(--paper); box-shadow: 5px 5px 0 var(--ink); }
   .event-card__date { display: grid; place-items: center; padding: 1rem; background: var(--signal); color: #17152b; border-right: 3px solid var(--ink); font: 900 1rem var(--font-mono); text-align: center; }
   .event-card__body { padding: 1.5rem; }

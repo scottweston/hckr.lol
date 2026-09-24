@@ -24,6 +24,19 @@ module.exports = function (eleventyConfig) {
     }).format(date)
   );
 
+  eleventyConfig.addFilter("readableDateTime", (date) =>
+    new Intl.DateTimeFormat("en-AU", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Australia/Melbourne",
+      timeZoneName: "short",
+    }).format(date)
+  );
+
   eleventyConfig.addFilter("htmlDateString", (date) =>
     new Date(date).toISOString().slice(0, 10)
   );
@@ -32,9 +45,17 @@ module.exports = function (eleventyConfig) {
     (items || []).slice(0, count)
   );
 
+  eleventyConfig.addFilter("publishedEvents", (events) =>
+    events.filter((event) => Boolean(event.ticketUrl))
+  );
+
+  eleventyConfig.addFilter("eventPassed", (event) =>
+    new Date(event.end) <= new Date()
+  );
+
   eleventyConfig.addFilter("nextEvent", (events) =>
     events
-      .filter((event) => event.status === "upcoming")
+      .filter((event) => event.ticketUrl && new Date(event.end) > new Date())
       .sort((a, b) => new Date(a.start) - new Date(b.start))[0]
   );
 

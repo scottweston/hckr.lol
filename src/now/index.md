@@ -1,12 +1,12 @@
 ---
 layout: layouts/page.njk
 title: Now
-eyebrow: A snapshot / August 2026
+eyebrow: A snapshot / September 2026
 description: What this little community site is paying attention to right now.
 permalink: /now/
 ---
 
-We are getting ready for our [first IndieWeb meetup](/events/) at Ballarat Hackerspace on Wednesday 26 August and turning this repository into a useful object lesson.
+We have now held two [IndieWeb meetups](/events/) at Ballarat Hackerspace. One attendee [published a first site on their own domain](/blog/first-domain-first-website/); another [prepared their DNS for a registrar move](/blog/moving-dns-before-a-domain-transfer/). We are planning more fourth-Wednesday gatherings and will post each one when tickets are ready.
 
 ## Making
 
@@ -24,4 +24,4 @@ We are getting ready for our [first IndieWeb meetup](/events/) at Ballarat Hacke
 
 People with half-built home pages, elaborate blogs, one-file websites, hand-coded experiments, ancient domains, brand-new domains, and no domain yet.
 
-This page follows the [/now page movement](https://nownownow.com/about). It was last meaningfully updated on **2 August 2026**.
+This page follows the [/now page movement](https://nownownow.com/about). It was last meaningfully updated on **24 September 2026**.

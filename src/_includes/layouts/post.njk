@@ -6,7 +6,7 @@ layout: layouts/base.njk
     <p class="eyebrow">Field note № {{ collections.posts | length }}</p>
     <h1 class="p-name">{{ title }}</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      <time class="dt-published" datetime="{{ date.toISOString() }}">{% if showTime %}{{ date | readableDateTime }}{% else %}{{ date | readableDate }}{% endif %}</time>
       <span aria-hidden="true">/</span>
       <span>{{ readingTime or "3 min read" }}</span>
     </p>

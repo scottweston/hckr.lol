@@ -6,6 +6,7 @@ const test = require("node:test");
 const output = path.join(process.cwd(), "_site");
 const webring = require("../src/_data/webring.js");
 const palettes = require("../src/_data/palettes.json");
+const events = require("../src/_data/events.js");
 
 function walk(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -85,6 +86,41 @@ test("palette data produces valid light and dark choices", () => {
   for (const palette of palettes) {
     assert.ok(home.includes(`data-theme-option="${palette.id}"`));
     assert.ok(css.includes(`:root[data-theme="${palette.id}"]`));
+  }
+});
+
+test("events publish only with tickets and infer whether tickets are still available", () => {
+  const home = fs.readFileSync(path.join(output, "index.html"), "utf8");
+  const listing = fs.readFileSync(path.join(output, "events/index.html"), "utf8");
+  const now = Date.now();
+  const upcoming = events.filter((event) => event.ticketUrl && Date.parse(event.end) > now);
+
+  for (const event of events) {
+    assert.equal(Object.hasOwn(event, "status"), false);
+    assert.equal(event.displayDate.startsWith("Wednesday"), true);
+    if (event.ticketUrl) {
+      assert.ok(listing.includes(event.title), `${event.title} should be listed`);
+    } else {
+      assert.equal(listing.includes(event.title), false, `${event.title} should wait for tickets`);
+      assert.equal(home.includes(event.title), false, `${event.title} should wait for tickets`);
+    }
+  }
+
+  assert.equal(listing.includes("data-events-coming-soon hidden"), upcoming.length > 0);
+  assert.equal(home.includes("data-next-event-soon hidden"), upcoming.length > 0);
+});
+
+test("meetup recaps carry the event end time into the page and feed", () => {
+  const feed = fs.readFileSync(path.join(output, "feed.xml"), "utf8");
+  const recaps = [
+    ["first-domain-first-website", "2026-08-26T10:30:00.000Z"],
+    ["moving-dns-before-a-domain-transfer", "2026-09-23T10:30:00.000Z"],
+  ];
+
+  for (const [slug, timestamp] of recaps) {
+    const html = fs.readFileSync(path.join(output, "blog", slug, "index.html"), "utf8");
+    assert.ok(html.includes(`class="dt-published" datetime="${timestamp}"`));
+    assert.ok(feed.includes(`<pubDate>${new Date(timestamp).toUTCString()}</pubDate>`));
   }
 });
 

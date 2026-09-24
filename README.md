@@ -81,11 +81,13 @@ permalink: /blog/notes-from-the-meetup/
 ---
 ```
 
+For a post tied to a precise time, use an ISO date with its local offset (for example, `2026-09-23T20:30:00+10:00`) and add `showTime: true` to display that time on the post. The feed keeps the precise publication time too.
+
 Resources use `layouts/resource.njk` and add `category`, `level` and `updated`. Events live in `src/_data/events.js`, which demonstrates keeping structured records separate from presentation.
 
-To add a meetup, copy an event record and update its title, dates, times, location, description and ticket URL. Use `status: "upcoming"` for planned events and `status: "past"` for finished ones. Status is maintained manually; it does not change automatically with the date.
+The monthly meetup dates through September 2027 are in `src/_data/events.js`. Each record supplies a number, date, Melbourne UTC offset, description and optional ticket URL. Check the date and venue booking before opening registration, then add the URL as the final argument to `meetup(...)`.
 
-The front page shows the earliest start time among events marked `upcoming`, or a coming-soon message when there are none. The events page lists every record in file order. Both pages use the same data, so updating `ticketUrl` updates both links; leave it empty to hide the ticket link until it is ready. Run `mise run check` to rebuild and verify the site, then publish the generated site for the changes to appear live.
+An event appears on the site only when it has a ticket URL. The front page shows the soonest ticketed meetup that has not ended, or a coming-soon message asking visitors to return for tickets. The events page shows ticketed meetups, with past events inferred from their end times. The browser updates that state as time passes, without another deployment. Run `mise run check` to rebuild and verify the site, then publish the generated site for newly ticketed events to appear live.
 
 ## Change the theme
 

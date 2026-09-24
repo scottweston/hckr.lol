@@ -15,18 +15,21 @@ description: Notes, resources and a neighbourly webring for people making homes 
   </div>
   {% set meetup = events | nextEvent %}
   <aside class="hero__panel" aria-label="Next meetup">
-    {% if meetup %}
-    <p class="hero__panel-label">Next transmission / {{ meetup.title }}</p>
-    <div>
-      <time datetime="{{ meetup.start }}">{{ meetup.date | eventDay }}<br>{{ meetup.date | eventMonth }}</time>
-      <p>{{ meetup.startTime }}–{{ meetup.endTime }}<br>{{ meetup.location }}</p>
+    {% for event in events | publishedEvents %}
+    <div class="hero__panel-content" data-next-event data-event-end="{{ event.end }}"{% if not meetup or meetup.date != event.date %} hidden{% endif %}>
+      <p class="hero__panel-label">Next transmission / {{ event.title }}</p>
+      <div>
+        <time datetime="{{ event.start }}">{{ event.date | eventDay }}<br>{{ event.date | eventMonth }}</time>
+        <p>{{ event.startTime }}–{{ event.endTime }}<br>{{ event.location }}</p>
+      </div>
+      <p class="broadcast"><a href="/events/">Details</a> · <a href="{{ event.ticketUrl }}">Tickets →</a></p>
     </div>
-    <p class="broadcast"><a href="/events/">Details</a>{% if meetup.ticketUrl %} · <a href="{{ meetup.ticketUrl }}">Tickets →</a>{% endif %}</p>
-    {% else %}
-    <p class="hero__panel-label">Next transmission</p>
-    <p>More meetups coming soon.</p>
-    <p class="broadcast"><a href="/events/">Past meetups →</a></p>
-    {% endif %}
+    {% endfor %}
+    <div class="hero__panel-content" data-next-event-soon{% if meetup %} hidden{% endif %}>
+      <p class="hero__panel-label">Next transmission</p>
+      <p>The next meetup is coming soon. Come back soon to get tickets.</p>
+      <p class="broadcast"><a href="/events/">Past meetups →</a></p>
+    </div>
   </aside>
 </section>
 
